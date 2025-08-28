@@ -1,7 +1,5 @@
-fastapi
-uvicorn
-websockets
-facebook-sdk
-python-facebook-api
-fbchat
-requests
+fastapi==0.110.0
+uvicorn==0.29.0
+websockets==12.0
+fbchat==1.9.7
+requests==2.32.3
