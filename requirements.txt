@@ -3,3 +3,5 @@ uvicorn
 websockets
 facebook-sdk
 python-facebook-api
+fbchat
+requests
