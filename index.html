@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शेलेन्द्र हिन्दू जी का गुलाम बोट राम किशोर</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #1a1a1a; color: #e0e0e0; max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .status { padding: 15px; margin-bottom: 20px; border-radius: 5px; font-weight: bold; text-align: center; }
+        .online { background: #4CAF50; color: white; }
+        .offline { background: #f44336; color: white; }
+        .panel { background: #2d2d2d; padding: 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.3); margin-bottom: 20px; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; background: #2196F3; color: white; border: none; border-radius: 4px; transition: all 0.3s; }
+        button:hover { background: #0b7dda; transform: scale(1.02); }
+        button:disabled { background: #555555; cursor: not-allowed; }
+        input, select, textarea { padding: 10px; margin: 5px 0; width: 100%; border: 1px solid #444; border-radius: 4px; background: #333; color: white; }
+        .log { height: 300px; overflow-y: auto; border: 1px solid #444; padding: 10px; margin-top: 20px; font-family: monospace; background: #222; color: #00ff00; border-radius: 4px; }
+        small { color: #888; font-size: 12px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tabs { display: flex; margin-bottom: 15px; border-bottom: 1px solid #444; }
+        .tab { padding: 10px 15px; cursor: pointer; background: #333; margin-right: 5px; border-radius: 4px 4px 0 0; transition: all 0.3s; }
+        .tab.active { background: #2196F3; color: white; }
+        h1, h2, h3 { color: #2196F3; }
+        .command-list { background: #333; padding: 15px; border-radius: 5px; margin-top: 15px; }
+        .command { margin: 5px 0; padding: 8px; background: #444; border-radius: 4px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>🔥 शेलेन्द्र हिन्दू जी का गुलाम बोट राम किशोर 🔥</h1>
+    
+    <div class="status offline" id="status">Status: Offline</div>
+    
+    <div class="panel">
+        <div class="tabs">
+            <div class="tab active" data-tab="main">Main</div>
+            <div class="tab" data-tab="abuse">Abuse System</div>
+            <div class="tab" data-tab="settings">Settings</div>
+            <div class="tab" data-tab="commands">Commands</div>
+        </div>
+        
+        <div id="main-tab" class="tab-content active">
+            <div><textarea id="cookie-content" rows="5" placeholder="यहां कुकी कॉन्टेंट पेस्ट करें (txt या json फॉर्मेट)"></textarea><small>कुकी कॉन्टेंट पेस्ट करें (txt या json)</small></div>
+            <div><input type="text" id="prefix" value="!" placeholder="कमांड प्रीफिक्स"></div>
+            <div><input type="text" id="admin-id" placeholder="एडमिन फेसबुक ID" value=""></div>
+            <button id="start-btn">बॉट शुरू करें</button>
+            <button id="stop-btn" disabled>बॉट बंद करें</button>
+        </div>
+        
+        <div id="abuse-tab" class="tab-content">
+            <div><label for="abuse-file">अब्यूज मैसेज फाइल</label><input type="file" id="abuse-file" accept=".txt"><small>abuse.txt फाइल अपलोड करें (प्रति लाइन एक मैसेज)</small></div>
+            <button id="upload-abuse">अब्यूज फाइल अपलोड करें</button>
+            <div style="margin-top: 20px;"><label for="welcome-messages">वेलकम मैसेजेस (प्रति लाइन एक)</label><textarea id="welcome-messages" rows="5">🌟 {name} का ग्रुप में स्वागत है! मजा लो! 🌟
+🔥 {name} पार्टी में शामिल हो गया! अब धमाल करें! 🔥
+👋 हे {name}, राम किशोर की टीम तुम्हारा स्वागत करती है! अच्छे से रहो वरना भुना जाएगा! 👋
+🎉 {name} आ गया! अब मजा शुरू! 🎉
+😈 राम किशोर का गुलाम {name} आ गया! अपनी पीठ संभालो! 😈</textarea><button id="save-welcome">वेलकम मैसेजेस सेव करें</button></div>
+        </div>
+        
+        <div id="settings-tab" class="tab-content">
+            <div><label><input type="checkbox" id="auto-spam" > ऑटो स्पैम मैसेजेस स्वीकार करें</label></div>
+            <div><label><input type="checkbox" id="auto-message" > ऑटो मैसेज रिक्वेस्ट्स स्वीकार करें</label></div>
+            <div><label><input type="checkbox" id="auto-convo" > ऑटो कन्वर्सेशन मोड</label></div>
+            <button id="save-settings">सेटिंग्स सेव करें</button>
+        </div>
+        
+        <div id="commands-tab" class="tab-content">
+            <h3>उपलब्ध कमांड्स</h3>
+            <div class="command-list">
+                <div class="command">!help - सभी कमांड्स दिखाएं</div>
+                <div class="command">!groupnamelock on &lt;name&gt; - ग्रुप का नाम लॉक करें</div>
+                <div class="command">!nicknamelock on &lt;nickname&gt; - सभी निकनेम्स लॉक करें</div>
+                <div class="command">!tid - ग्रुप ID लें</div>
+                <div class="command">!uid - अपना ID लें</div>
+                <div class="command">!uid @mention - मेंशन किए यूजर का ID लें</div>
+                <div class="command">!info @mention - यूजर की जानकारी लें</div>
+                <div class="command">!group info - ग्रुप की जानकारी लें</div>
+                <div class="command">!pair - दो रैंडम मेंबर्स को पेयर करें</div>
+                <div class="command">!music &lt;song name&gt; - यूट्यूब से गाना चलाएं</div>
+                <div class="command">!antiout on/off - एंटी-आउट फीचर टॉगल करें</div>
+                <div class="command">!send sticker start/stop - स्टिकर स्पैम शुरू/बंद करें</div>
+                <div class="command">!autospam accept - स्पैम मैसेजेस ऑटो स्वीकार करें</div>
+                <div class="command">!automessage accept - मैसेज रिक्वेस्ट्स ऑटो स्वीकार करें</div>
+                <div class="command">!loder target on @user - यूजर को टारगेट करें</div>
+                <div class="command">!loder stop - टारगेटिंग बंद करें</div>
+                <div class="command">autoconvo on/off - ऑटो कन्वर्सेशन टॉगल करें</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel">
+        <h3>बॉट लॉग्स</h3>
+        <div class="log" id="log-container"></div>
+    </div>
+
+    <script>
+        const socket = new WebSocket('wss://' + window.location.host);
+        const logContainer = document.getElementById('log-container');
+        const statusDiv = document.getElementById('status');
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const uploadAbuseBtn = document.getElementById('upload-abuse');
+        const saveWelcomeBtn = document.getElementById('save-welcome');
+        const saveSettingsBtn = document.getElementById('save-settings');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const autoSpamCheckbox = document.getElementById('auto-spam');
+        const autoMessageCheckbox = document.getElementById('auto-message');
+        const autoConvoCheckbox = document.getElementById('auto-convo');
+
+        function addLog(message, type = 'info') {
+            const logEntry = document.createElement('div');
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(`${tab.dataset.tab}-tab`).classList.add('active');
+            });
+        });
+
+        socket.onopen = () => addLog('बॉट सर्वर से कनेक्टेड');
+
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'log') {
+                addLog(data.message);
+            } else if (data.type === 'status') {
+                statusDiv.className = data.running ? 'status online' : 'status offline';
+                statusDiv.textContent = `Status: ${data.running ? 'Online' : 'Offline'}`;
+                startBtn.disabled = data.running;
+                stopBtn.disabled = !data.running;
+            } else if (data.type === 'settings') {
+                autoSpamCheckbox.checked = data.autoSpamAccept;
+                autoMessageCheckbox.checked = data.autoMessageAccept;
+                autoConvoCheckbox.checked = data.autoConvo;
+            }
+        };
+
+        socket.onclose = () => {
+            addLog('बॉट सर्वर से डिस्कनेक्ट। रीकनेक्ट हो रहा है...');
+            setTimeout(() => {
+                socket = new WebSocket('wss://' + window.location.host);
+            }, 5000);
+        };
+
+        startBtn.addEventListener('click', () => {
+            const cookieContent = document.getElementById('cookie-content').value.trim();
+            if (!cookieContent) {
+                addLog('कृपया कुकी कॉन्टेंट पेस्ट करें');
+                return;
+            }
+
+            const prefix = document.getElementById('prefix').value.trim();
+            const adminId = document.getElementById('admin-id').value.trim();
+
+            socket.send(JSON.stringify({
+                type: 'start',
+                cookieContent,
+                prefix,
+                adminId
+            }));
+        });
+
+        stopBtn.addEventListener('click', () => {
+            socket.send(JSON.stringify({ type: 'stop' }));
+        });
+
+        uploadAbuseBtn.addEventListener('click', () => {
+            const fileInput = document.getElementById('abuse-file');
+            if (fileInput.files.length === 0) {
+                addLog('कृपया अब्यूज फाइल चुनें');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                socket.send(JSON.stringify({
+                    type: 'uploadAbuse',
+                    content: event.target.result
+                }));
+            };
+
+            reader.readAsText(file);
+        });
+
+        saveWelcomeBtn.addEventListener('click', () => {
+            const welcomeMessages = document.getElementById('welcome-messages').value;
+            socket.send(JSON.stringify({
+                type: 'saveWelcome',
+                content: welcomeMessages
+            }));
+        });
+
+        saveSettingsBtn.addEventListener('click', () => {
+            socket.send(JSON.stringify({
+                type: 'saveSettings',
+                autoSpamAccept: autoSpamCheckbox.checked,
+                autoMessageAccept: autoMessageCheckbox.checked,
+                autoConvo: autoConvoCheckbox.checked
+            }));
+        });
+
+        addLog('कंट्रोल पैनल तैयार है');
+    </script>
+</body>
+</html>
