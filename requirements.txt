@@ -2,6 +2,6 @@ fastapi==0.110.0
 uvicorn==0.29.0
 websockets==12.0
 requests==2.32.3
-yt-dlp
-pillow
-guppy
+yt-dlp==2023.11.14  # Specific version for stability
+pillow==10.3.0  # Compatible version
+guppy==0.1.5  # Latest stable guppy version, check GitHub for updates
