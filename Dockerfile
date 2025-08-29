@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-# सिस्टम डिपेंडेंसीज़ इंस्टॉल करो
+# सिस्टम डिपेंडेंसीज़ इंस्टॉल करो (Pillow, yt-dlp, guppy के लिए)
 RUN apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
@@ -8,6 +8,13 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
+
+# पायथन एनवायरनमेंट सेटअप
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=off \
+    PIP_DISABLE_PIP_VERSION_CHECK=on \
+    PIP_DEFAULT_TIMEOUT=100
 
 # वर्किंग डायरेक्टरी सेट करो
 WORKDIR /app
