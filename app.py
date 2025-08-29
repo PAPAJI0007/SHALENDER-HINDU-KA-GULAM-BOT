@@ -34,15 +34,17 @@ class Manager:
         for ws in list(self.connections):
             try:
                 await ws.send_json({"type": "log", "message": msg})
-            except:
+            except Exception as e:
                 self.connections.remove(ws)
+                print(f"WebSocket error: {e}")
 
     async def send_status(self, running):
         for ws in list(self.connections):
             try:
                 await ws.send_json({"type": "status", "running": running})
-            except:
+            except Exception as e:
                 self.connections.remove(ws)
+                print(f"Status send error: {e}")
 
     async def send_settings(self):
         for ws in list(self.connections):
@@ -53,8 +55,9 @@ class Manager:
                     "autoMessageAccept": bool(self.auto_message),
                     "autoConvo": self.auto_convo
                 })
-            except:
+            except Exception as e:
                 self.connections.remove(ws)
+                print(f"Settings send error: {e}")
 
 manager = Manager()
 
@@ -62,7 +65,7 @@ manager = Manager()
 async def root():
     return {"message": "बोट चल रहा है Render पर ✅ https://shalender-hindu-ka-gulam-bot.onrender.com"}
 
-@app.websocket("/ws")  # Specific WebSocket endpoint for Render
+@app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
     await ws.accept()
     manager.connections.add(ws)
@@ -75,11 +78,14 @@ async def websocket_endpoint(ws: WebSocket):
             if data["type"] == "start":
                 manager.prefix = data.get("prefix", "!")
                 manager.admin_id = data.get("adminId")
-                session_cookies = json.loads(data["cookieContent"])
-                manager.client = Bot(session_cookies=session_cookies)
-                manager.client.listen()
-                await manager.send_log("✅ बोट शुरू हो गया")
-                await manager.send_status(True)
+                try:
+                    session_cookies = json.loads(data["cookieContent"])
+                    manager.client = Bot(session_cookies=session_cookies)
+                    manager.client.listen()
+                    await manager.send_log("✅ बोट शुरू हो गया")
+                    await manager.send_status(True)
+                except json.JSONDecodeError as e:
+                    await manager.send_log(f"⚠️ कुकी फाइल त्रुटि: {str(e)}")
             elif data["type"] == "stop":
                 if manager.client:
                     manager.client.stop_listening()
@@ -112,11 +118,14 @@ class Bot(Client):
 
 def send_reply(thread_id, thread_type, text):
     if manager.client:
-        manager.client.send(
-            Message(text=text),
-            thread_id=thread_id,
-            thread_type=thread_type
-        )
+        try:
+            manager.client.send(
+                Message(text=text),
+                thread_id=thread_id,
+                thread_type=thread_type
+            )
+        except Exception as e:
+            print(f"Send error: {e}")
 
 def handle_message(author_id, thread_id, message, thread_type):
     if not message.startswith(manager.prefix):
@@ -224,7 +233,6 @@ def handle_message(author_id, thread_id, message, thread_type):
         send_reply(thread_id, thread_type, status_msg)
 
 if __name__ == "__main__":
-    # Optional: Use env vars if no file upload
     if os.getenv("FB_C_USER") and os.getenv("FB_XS"):
         session_cookies = {
             "c_user": os.getenv("FB_C_USER"),
