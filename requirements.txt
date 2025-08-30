@@ -1,6 +1,6 @@
 fastapi==0.115.2
 uvicorn==0.32.0
 requests==2.32.3
-fbchat
+fbchat-asyncio
 yt-dlp
 websockets==13.1
