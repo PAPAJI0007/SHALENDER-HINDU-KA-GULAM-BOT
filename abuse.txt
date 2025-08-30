@@ -1,0 +1,3 @@
+# Sample abuse messages (one per line). Upload your own via panel.
+Sample abuse 1
+Sample abuse 2
