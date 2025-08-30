@@ -5,16 +5,26 @@
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
-    "web": "npx serve -s ."
+    "web": "npx serve -s .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon bot.js",
+    "audit-fix": "npm audit fix"
   },
   "dependencies": {
     "express": "^4.21.0",
     "ws": "^8.18.0",
     "serve": "^14.2.3",
     "ytdl-core": "^4.11.5",
-    "ws3-fca": "^1.0.2"
+    "ws3-fca": "^1.0.2",
+    "fbchat-muqit": "^1.0.0",
+    "axios": "^1.7.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   },
   "engines": {
     "node": "20.x"
-  }
+  },
+  "author": "Your Name",
+  "license": "ISC"
 }
