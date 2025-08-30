@@ -1,7 +1,7 @@
 {
   "name": "shalender-hindu-ka-gulam-bot-ram",
   "version": "1.0.0",
-  "description": "Shalender Hindu Ka Gulam Ram India F Bot using ws3-fca",
+  "description": "Shalender Hindu Ka Gulam Ram India F Bot for Facebook Messenger using ws3-fca",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
@@ -16,8 +16,8 @@
     "serve": "^14.2.3",
     "ytdl-core": "^4.11.5",
     "ws3-fca": "^1.0.2",
-    "fbchat-muqit": "^1.0.0",
-    "axios": "^1.7.7"
+    "axios": "^1.7.7",
+    "youtube-search-api": "^1.2.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
