@@ -1,0 +1,15 @@
+{
+  "autoSpamAccept": false,
+  "autoMessageAccept": false,
+  "prefix": "!",
+  "adminId": "",
+  "running": false,
+  "antiout": false,
+  "groupNameLock": false,
+  "nicknameLock": false,
+  "stickerSpam": false,
+  "loderTarget": null,
+  "autoconvo": false,
+  "lockedGroupName": "",
+  "lockedNickname": ""
+}
