@@ -3,3 +3,4 @@ uvicorn==0.32.0
 requests==2.32.3
 fbchat==1.9.7
 yt-dlp
+websockets==13.1
