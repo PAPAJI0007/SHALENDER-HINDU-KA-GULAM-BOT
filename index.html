@@ -3,111 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>शेलेन्द्र हिन्दू जी का गुलाम बोट राम किशोर</title>
+    <title>शेलेन्द्र हिन्दू का गुलाम बोट राम किशोर Control Panel</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #1a1a1a; color: #e0e0e0; max-width: 1000px; margin: 0 auto; padding: 20px; }
-        .status { padding: 15px; margin-bottom: 20px; border-radius: 5px; font-weight: bold; text-align: center; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .status {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
         .online { background: #4CAF50; color: white; }
         .offline { background: #f44336; color: white; }
-        .panel { background: #2d2d2d; padding: 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.3); margin-bottom: 20px; }
-        button { padding: 10px 15px; margin: 5px; cursor: pointer; background: #2196F3; color: white; border: none; border-radius: 4px; transition: all 0.3s; }
-        button:hover { background: #0b7dda; transform: scale(1.02); }
-        button:disabled { background: #555555; cursor: not-allowed; }
-        input, select, textarea { padding: 10px; margin: 5px 0; width: 100%; border: 1px solid #444; border-radius: 4px; background: #333; color: white; }
-        .log { height: 300px; overflow-y: auto; border: 1px solid #444; padding: 10px; margin-top: 20px; font-family: monospace; background: #222; color: #00ff00; border-radius: 4px; }
-        small { color: #888; font-size: 12px; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .tabs { display: flex; margin-bottom: 15px; border-bottom: 1px solid #444; }
-        .tab { padding: 10px 15px; cursor: pointer; background: #333; margin-right: 5px; border-radius: 4px 4px 0 0; transition: all 0.3s; }
-        .tab.active { background: #2196F3; color: white; }
-        h1, h2, h3 { color: #2196F3; }
-        .command-list { background: #333; padding: 15px; border-radius: 5px; margin-top: 15px; }
-        .command { margin: 5px 0; padding: 8px; background: #444; border-radius: 4px; font-family: monospace; }
+        .connecting { background: #ff9800; color: white; }
+        .server-connected { background: #2196F3; color: white; }
+        .panel {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #0b7dda;
+            transform: scale(1.02);
+        }
+        button:disabled {
+            background: #555555;
+            cursor: not-allowed;
+        }
+        input, select, textarea {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #333;
+            color: white;
+        }
+        .log {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #444;
+            padding: 10px;
+            margin-top: 20px;
+            font-family: monospace;
+            background: #222;
+            color: #00ff00;
+            border-radius: 4px;
+        }
+        small {
+            color: #888;
+            font-size: 12px;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #444;
+        }
+        .tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            background: #333;
+            margin-right: 5px;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            background: #2196F3;
+            color: white;
+        }
+        h1, h3 {
+            color: #2196F3;
+        }
+        .command-list {
+            background: #333;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .command {
+            margin: 5px 0;
+            padding: 8px;
+            background: #444;
+            border-radius: 4px;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
-    <h1>🔥 शेलेन्द्र हिन्दू जी का गुलाम बोट राम किशोर कंट्रोल पैनल 🔥</h1>
+    <h1>🔥 शेलेन्द्र हिन्दू का गुलाम बोट राम किशोर Control Panel 🔥</h1>
     
-    <div class="status offline" id="status">स्थिति: ऑफलाइन</div>
+    <div class="status connecting" id="status">
+        Status: Connecting to server...
+    </div>
     
     <div class="panel">
         <div class="tabs">
-            <div class="tab active" data-tab="main">मुख्य</div>
-            <div class="tab" data-tab="abuse">अपमान प्रणाली</div>
-            <div class="tab" data-tab="settings">सेटिंग्स</div>
-            <div class="tab" data-tab="commands">कमांड्स</div>
+            <div class="tab active" data-tab="main">Main</div>
+            <div class="tab" data-tab="abuse">Abuse System</div>
+            <div class="tab" data-tab="settings">Settings</div>
+            <div class="tab" data-tab="commands">Commands</div>
         </div>
         
         <div id="main-tab" class="tab-content active">
-            <div><input type="file" id="cookie-file" accept=".txt,.json"><small>अपनी कुकी फाइल चुनें (txt या json)</small></div>
-            <div><input type="text" id="prefix" value="!" placeholder="कमांड प्रीफिक्स"></div>
-            <div><input type="text" id="admin-id" placeholder="एडमिन फेसबुक ID" value=""></div>
-            <button id="start-btn">बोट शुरू करें</button>
-            <button id="stop-btn" disabled>बोट बंद करें</button>
+            <div>
+                <textarea id="cookie-content" placeholder="Paste your cookie JSON here (e.g., {\"c_user\": \"...\", \"xs\": \"...\"})" rows="4"></textarea>
+                <small>Paste your cookie JSON (extract from browser)</small>
+            </div>
+            
+            <div>
+                <input type="text" id="prefix" value="!" placeholder="Command prefix">
+            </div>
+            
+            <div>
+                <input type="text" id="admin-id" placeholder="Admin Facebook ID" value="">
+            </div>
+            
+            <button id="start-btn">Start Bot</button>
+            <button id="stop-btn" disabled>Stop Bot</button>
         </div>
         
         <div id="abuse-tab" class="tab-content">
-            <div><label for="abuse-file">अपमान संदेश फाइल</label><input type="file" id="abuse-file" accept=".txt"><small>abuse.txt फाइल अपलोड करें (प्रति पंक्ति एक संदेश)</small></div>
-            <button id="upload-abuse">अपमान फाइल अपलोड करें</button>
-            <div style="margin-top: 20px;"><label for="welcome-messages">स्वागत संदेश (प्रति पंक्ति एक)</label><textarea id="welcome-messages" rows="5">🌟 {name} को ग्रुप में स्वागत है! आनंद लें! 🌟
-🔥 {name} पार्टी में शामिल हुआ! मजा शुरू! 🔥
-👋 हे {name}, शेलेन्द्र के क्रू का स्वागत है! शिष्ट रहें वरना भुना दिए जाओगे! 👋
-🎉 {name} आ गए! मस्ती शुरू! 🎉
-😈 शेलेन्द्र के बच्चे {name} ने प्रवेश किया! सावधान रहें! 😈</textarea><button id="save-welcome">स्वागत संदेश सहेजें</button></div>
+            <div>
+                <label for="abuse-file">Abuse Messages File</label>
+                <input type="file" id="abuse-file" accept=".txt">
+                <small>Upload abuse.txt file with messages (one per line)</small>
+            </div>
+            <button id="upload-abuse">Upload Abuse File</button>
         </div>
         
         <div id="settings-tab" class="tab-content">
-            <div><label><input type="checkbox" id="auto-spam" > ऑटो स्पैम संदेश स्वीकार करें</label></div>
-            <div><label><input type="checkbox" id="auto-message" > ऑटो संदेश अनुरोध स्वीकार करें</label></div>
-            <div><label><input type="checkbox" id="auto-convo" > ऑटो बातचीत मोड</label></div>
-            <button id="save-settings">सेटिंग्स सहेजें</button>
+            <div>
+                <label>
+                    <input type="checkbox" id="auto-spam">
+                    Auto Accept Spam Messages
+                </label>
+            </div>
+            
+            <div>
+                <label>
+                    <input type="checkbox" id="auto-message">
+                    Auto Accept Message Requests
+                </label>
+            </div>
+            
+            <button id="save-settings">Save Settings</button>
         </div>
         
         <div id="commands-tab" class="tab-content">
-            <h3>उपलब्ध कमांड्स</h3>
+            <h3>Available Commands</h3>
             <div class="command-list">
-                <div class="command">!help - सभी कमांड्स दिखाएं</div>
-                <div class="command">!groupnamelock on &lt;name&gt; - ग्रुप नाम लॉक करें</div>
-                <div class="command">!nicknamelock on &lt;nickname&gt; - सभी उपनाम लॉक करें</div>
-                <div class="command">!tid - ग्रुप ID प्राप्त करें</div>
-                <div class="command">!uid - आपकी ID प्राप्त करें</div>
-                <div class="command">!uid @mention - उल्लेखित उपयोगकर्ता की ID प्राप्त करें</div>
-                <div class="command">!info @mention - उपयोगकर्ता जानकारी प्राप्त करें</div>
-                <div class="command">!group info - ग्रुप जानकारी प्राप्त करें</div>
-                <div class="command">!pair - दो यादृच्छिक सदस्यों को पेयर करें</div>
-                <div class="command">!music &lt;song name&gt; - YouTube संगीत चलाएं</div>
-                <div class="command">!antiout on/off - एंटीआउट सुविधा टॉगल करें</div>
-                <div class="command">!send sticker start/stop - स्टीकर स्पैम</div>
-                <div class="command">!autospam accept - ऑटो स्पैम संदेश स्वीकार करें</div>
-                <div class="command">!automessage accept - ऑटो संदेश अनुरोध स्वीकार करें</div>
-                <div class="command">!loder target on @user - उपयोगकर्ता को टारगेट करें</div>
-                <div class="command">!loder stop - टारगेटिंग बंद करें</div>
-                <div class="command">autoconvo on/off - ऑटो बातचीत टॉगल करें</div>
-                <div class="command">!view - बोट स्थिति देखें</div>
+                <div class="command">!help - Show all commands</div>
+                <div class="command">!groupnamelock on/off &lt;name&gt; - Lock/unlock group name</div>
+                <div class="command">!nicknamelock on/off &lt;nickname&gt; - Lock/unlock all nicknames</div>
+                <div class="command">!tid - Get group ID</div>
+                <div class="command">!uid - Get your ID</div>
+                <div class="command">!uid @mention - Get mentioned user's ID</div>
+                <div class="command">!info @mention - Get user information</div>
+                <div class="command">!groupinfo - Get group information</div>
+                <div class="command">!antiout on/off - Toggle anti-out feature</div>
+                <div class="command">!send sticker start/stop - Sticker spam</div>
+                <div class="command">!autospam accept - Auto accept spam messages</div>
+                <div class="command">!automessage accept - Auto accept message requests</div>
+                <div class="command">!loder target on &lt;time&gt; @user - Target a user with timer</div>
+                <div class="command">!loder stop - Stop targeting</div>
+                <div class="command">!autoconvo on/off &lt;time&gt; - Toggle auto conversation with timer</div>
+                <div class="command">!pair - Pair two random group members</div>
+                <div class="command">!music &lt;song name&gt; - Download music from YouTube</div>
             </div>
         </div>
     </div>
     
     <div class="panel">
-        <h3>बोट लॉग्स</h3>
+        <h3>Bot Logs</h3>
         <div class="log" id="log-container"></div>
     </div>
 
     <script>
-        const socket = new WebSocket('wss://shalender-hindu-ka-gulam-bot.onrender.com/ws'); // Specific Render URL
         const logContainer = document.getElementById('log-container');
         const statusDiv = document.getElementById('status');
         const startBtn = document.getElementById('start-btn');
         const stopBtn = document.getElementById('stop-btn');
         const uploadAbuseBtn = document.getElementById('upload-abuse');
-        const saveWelcomeBtn = document.getElementById('save-welcome');
         const saveSettingsBtn = document.getElementById('save-settings');
         const tabs = document.querySelectorAll('.tab');
         const tabContents = document.querySelectorAll('.tab-content');
         const autoSpamCheckbox = document.getElementById('auto-spam');
         const autoMessageCheckbox = document.getElementById('auto-message');
-        const autoConvoCheckbox = document.getElementById('auto-convo');
 
         function addLog(message, type = 'info') {
             const logEntry = document.createElement('div');
@@ -126,55 +232,77 @@
             });
         });
 
-        socket.onopen = () => addLog('बोट सर्वर से कनेक्ट हो गया');
+        // WebSocket connection for Render
+        let socket;
+        const wsUrl = 'wss://shalender-hindu-ka-gulam-bot-ram.onrender.com/ws';
 
-        socket.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            if (data.type === 'log') {
-                addLog(data.message);
-            } else if (data.type === 'status') {
-                statusDiv.className = data.running ? 'status online' : 'status offline';
-                statusDiv.textContent = `स्थिति: ${data.running ? 'ऑनलाइन' : 'ऑफलाइन'}`;
-                startBtn.disabled = data.running;
-                stopBtn.disabled = !data.running;
-            } else if (data.type === 'settings') {
-                autoSpamCheckbox.checked = data.autoSpamAccept;
-                autoMessageCheckbox.checked = data.autoMessageAccept;
-                autoConvoCheckbox.checked = data.autoConvo;
-            }
-        };
+        function connectWebSocket() {
+            socket = new WebSocket(wsUrl);
+            
+            socket.onopen = () => {
+                addLog('Connected to bot server');
+                statusDiv.className = 'status server-connected';
+                statusDiv.textContent = 'Status: Connected to Server';
+            };
 
-        socket.onclose = () => {
-            addLog('बोट सर्वर से डिस्कनेक्ट हो गया. पुनः कनेक्ट हो रहा है...');
-            setTimeout(() => {
-                socket = new WebSocket('wss://shalender-hindu-ka-gulam-bot.onrender.com/ws');
-            }, 5000);
-        };
+            socket.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    if (data.type === 'log') {
+                        addLog(data.message);
+                    } else if (data.type === 'status') {
+                        statusDiv.className = data.running ? 'status online' : 'status server-connected';
+                        statusDiv.textContent = `Status: ${data.running ? 'Online' : 'Connected to Server'}`;
+                        startBtn.disabled = data.running;
+                        stopBtn.disabled = !data.running;
+                    } else if (data.type === 'settings') {
+                        autoSpamCheckbox.checked = data.autoSpamAccept;
+                        autoMessageCheckbox.checked = data.autoMessageAccept;
+                    }
+                } catch (e) {
+                    addLog(`Error parsing message: ${e.message}`);
+                }
+            };
+
+            socket.onclose = () => {
+                addLog('Disconnected from bot server, retrying in 5 seconds...');
+                statusDiv.className = 'status offline';
+                statusDiv.textContent = 'Status: Disconnected';
+                setTimeout(connectWebSocket, 5000); // Retry after 5 seconds
+            };
+
+            socket.onerror = (error) => {
+                addLog(`WebSocket error: ${error.message || 'Unknown error'}`);
+                statusDiv.className = 'status offline';
+                statusDiv.textContent = 'Status: Connection Error';
+            };
+        }
+
+        // Initial connection
+        connectWebSocket();
 
         startBtn.addEventListener('click', () => {
-            const fileInput = document.getElementById('cookie-file');
-            if (fileInput.files.length === 0) {
-                addLog('कृपया एक कुकी फाइल चुनें');
+            const cookieContent = document.getElementById('cookie-content').value.trim();
+            if (!cookieContent) {
+                addLog('Please paste a cookie JSON');
+                return;
+            }
+            try {
+                JSON.parse(cookieContent); // Validate JSON
+            } catch (e) {
+                addLog('Invalid cookie JSON format');
                 return;
             }
 
-            const file = fileInput.files[0];
-            const reader = new FileReader();
+            const prefix = document.getElementById('prefix').value.trim();
+            const adminId = document.getElementById('admin-id').value.trim();
 
-            reader.onload = (event) => {
-                const cookieContent = event.target.result;
-                const prefix = document.getElementById('prefix').value.trim();
-                const adminId = document.getElementById('admin-id').value.trim();
-
-                socket.send(JSON.stringify({
-                    type: 'start',
-                    cookieContent,
-                    prefix,
-                    adminId
-                }));
-            };
-
-            reader.readAsText(file);
+            socket.send(JSON.stringify({
+                type: 'start',
+                cookieContent,
+                prefix,
+                adminId
+            }));
         });
 
         stopBtn.addEventListener('click', () => {
@@ -184,7 +312,7 @@
         uploadAbuseBtn.addEventListener('click', () => {
             const fileInput = document.getElementById('abuse-file');
             if (fileInput.files.length === 0) {
-                addLog('कृपया एक अपमान फाइल चुनें');
+                addLog('Please select an abuse file');
                 return;
             }
 
@@ -201,24 +329,15 @@
             reader.readAsText(file);
         });
 
-        saveWelcomeBtn.addEventListener('click', () => {
-            const welcomeMessages = document.getElementById('welcome-messages').value;
-            socket.send(JSON.stringify({
-                type: 'saveWelcome',
-                content: welcomeMessages
-            }));
-        });
-
         saveSettingsBtn.addEventListener('click', () => {
             socket.send(JSON.stringify({
                 type: 'saveSettings',
                 autoSpamAccept: autoSpamCheckbox.checked,
-                autoMessageAccept: autoMessageCheckbox.checked,
-                autoConvo: autoConvoCheckbox.checked
+                autoMessageAccept: autoMessageCheckbox.checked
             }));
         });
 
-        addLog('कंट्रोल पैनल तैयार');
+        addLog('Control panel ready');
     </script>
 </body>
-    </html>
+</html>H
