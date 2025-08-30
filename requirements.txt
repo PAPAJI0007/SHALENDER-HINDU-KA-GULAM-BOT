@@ -2,4 +2,4 @@ fastapi==0.115.2
 uvicorn==0.32.0
 requests==2.32.3
 fbchat==1.9.7
-yt-dlp==2025.8.27
+yt-dlp
