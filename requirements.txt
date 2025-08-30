@@ -1,6 +1,5 @@
-fastapi==0.115.0
-uvicorn==0.30.6
+fastapi==0.115.2
+uvicorn==0.32.0
 requests==2.32.3
-pillow==10.4.0
-yt-dlp==2024.8.6
-guppy==0.1.11
+fbchat==1.9.7
+yt-dlp==2024.10.25
