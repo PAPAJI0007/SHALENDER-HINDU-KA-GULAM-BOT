@@ -1,0 +1,5 @@
+node_modules
+.env
+selected_cookie.txt
+abuse.txt
+welcome.txt
