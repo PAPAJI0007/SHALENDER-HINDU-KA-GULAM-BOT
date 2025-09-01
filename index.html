@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शेलेन्द्र हिन्दू का गुलाम बोट</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Verdana', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff3333, #3333ff);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            color: #ffcc00;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffcc00;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ff4444;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 14px;
+        }
+
+        input[type="file"] {
+            border: none;
+            padding: 5px 0;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff4444;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #cc0000;
+        }
+
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        #commands {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        #log {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+            padding: 10px;
+            height: 150px;
+            overflow-y: auto;
+            font-size: 13px;
+            color: #fff;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .log-timestamp {
+            color: #ffcc00;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+
+        .status {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>शेलेन्द्र हिन्दू का गुलाम बोट 🚀</h1>
+
+        <div class="input-group">
+            <label for="userId">User ID:</label>
+            <input type="text" id="userId" placeholder="Enter your User ID">
+        </div>
+
+        <div class="input-group">
+            <label for="prefix">Prefix:</label>
+            <input type="text" id="prefix" placeholder="Enter bot prefix (e.g., #)" value="#">
+        </div>
+
+        <div class="input-group">
+            <label for="adminId">Admin ID:</label>
+            <input type="text" id="adminId" placeholder="Enter Admin ID">
+        </div>
+
+        <div class="input-group">
+            <label for="cookieFile">Cookie File:</label>
+            <input type="file" id="cookieFile" accept=".txt">
+        </div>
+
+        <div class="button-group">
+            <button id="startBot">Start Bot</button>
+            <button id="stopBot" disabled>Stop Bot</button>
+        </div>
+
+        <div class="input-group">
+            <label for="abuseMessages">Abuse Messages (one per line):</label>
+            <textarea id="abuseMessages" placeholder="Enter abuse messages"></textarea>
+            <button id="uploadAbuse">Upload Abuse Messages</button>
+        </div>
+
+        <div class="input-group">
+            <label for="welcomeMessages">Welcome Messages (one per line):</label>
+            <textarea id="welcomeMessages" placeholder="Enter welcome messages"></textarea>
+            <button id="saveWelcome">Save Welcome Messages</button>
+        </div>
+
+        <div class="input-group">
+            <label>Bot Settings:</label>
+            <label><input type="checkbox" id="autoSpamAccept"> Auto Spam Accept</label>
+            <label><input type="checkbox" id="autoMessageAccept"> Auto Message Accept</label>
+            <label><input type="checkbox" id="autoConvo"> Auto Convo</label>
+            <button id="saveSettings">Save Settings</button>
+        </div>
+
+        <div id="commands">
+            <h2 style="color: #ffcc00;">Bot Commands</h2>
+            <p><b>Master Commands (Only Shalender Hindu Ji):</b><br>
+            #stopall - Stop all bots<br>
+            #status - Show active bot count<br>
+            #kick &lt;userId&gt; - Stop bot for specific user<br>
+            #list - List all active user IDs</p>
+            <p><b>Admin Commands:</b><br>
+            #groupnamelock on/off &lt;name&gt; - Lock group name<br>
+            #nicknamelock on/off &lt;nickname&gt; - Lock all nicknames<br>
+            #antiout on/off - Toggle anti-out feature<br>
+            #kickout @user - Kick user from group<br>
+            #unsend - Delete replied message<br>
+            #send sticker start/stop - Sticker spam<br>
+            #autospam accept - Auto accept spam messages<br>
+            #automessage accept - Auto accept message requests<br>
+            #loder target on @user - Target a user<br>
+            #loder stop - Stop targeting<br>
+            autoconvo on/off - Toggle auto conversation</p>
+            <p><b>User Commands:</b><br>
+            #tid - Get group ID<br>
+            #uid - Get your ID<br>
+            #uid @mention - Get mentioned user's ID<br>
+            #info @mention - Get user info<br>
+            #group info - Get group info<br>
+            #pair - Pair two random members<br>
+            #music &lt;song name&gt; - Play YouTube music</p>
+            <p style="color: #ffcc00;">Created By: Shalender Hindu Ji</p>
+        </div>
+
+        <div class="status" id="status">Bot Status: Not Running</div>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        const ws = new WebSocket(`ws://${window.location.host}`);
+        const logDiv = document.getElementById('log');
+        const statusDiv = document.getElementById('status');
+        const startBotBtn = document.getElementById('startBot');
+        const stopBotBtn = document.getElementById('stopBot');
+
+        ws.onopen = () => {
+            log('WebSocket connected');
+            ws.send(JSON.stringify({ type: 'getStatus' }));
+        };
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+
+            if (data.type === 'log') {
+                log(`${data.message} (User: ${data.userId || 'Unknown'})`);
+            } else if (data.type === 'status') {
+                updateStatus(data.userId, data.running);
+            } else if (data.type === 'settings') {
+                document.getElementById('autoSpamAccept').checked = data.autoSpamAccept;
+                document.getElementById('autoMessageAccept').checked = data.autoMessageAccept;
+                document.getElementById('autoConvo').checked = data.autoConvo;
+                log('Settings updated from server');
+            }
+        };
+
+        ws.onclose = () => {
+            log('WebSocket disconnected');
+            updateStatus(null, false);
+        };
+
+        function log(message) {
+            const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            logEntry.innerHTML = `<span class="log-timestamp">[${timestamp}]</span> ${message}`;
+            logDiv.appendChild(logEntry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function updateStatus(userId, running) {
+            if (running) {
+                statusDiv.textContent = `Bot Status: Running (User: ${userId})`;
+                statusDiv.style.color = '#00ff00';
+                startBotBtn.disabled = true;
+                stopBotBtn.disabled = false;
+            } else {
+                statusDiv.textContent = 'Bot Status: Not Running';
+                statusDiv.style.color = '#ffcc00';
+                startBotBtn.disabled = false;
+                stopBotBtn.disabled = true;
+            }
+        }
+
+        document.getElementById('startBot').addEventListener('click', () => {
+            const userId = document.getElementById('userId').value.trim();
+            const prefix = document.getElementById('prefix').value.trim();
+            const adminId = document.getElementById('adminId').value.trim();
+            const cookieFile = document.getElementById('cookieFile').files[0];
+
+            if (!userId) {
+                log('Error: User ID is required');
+                return;
+            }
+
+            if (!cookieFile) {
+                log('Error: Cookie file is required');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                ws.send(JSON.stringify({
+                    type: 'start',
+                    userId: userId,
+                    cookieContent: reader.result,
+                    prefix: prefix || '#',
+                    adminId: adminId || ''
+                }));
+                log('Starting bot...');
+            };
+            reader.readAsText(cookieFile);
+        });
+
+        document.getElementById('stopBot').addEventListener('click', () => {
+            const userId = document.getElementById('userId').value.trim();
+            if (!userId) {
+                log('Error: User ID is required to stop bot');
+                return;
+            }
+            ws.send(JSON.stringify({ type: 'stop', userId }));
+            log(`Stopping bot for User ID: ${userId}`);
+        });
+
+        document.getElementById('uploadAbuse').addEventListener('click', () => {
+            const content = document.getElementById('abuseMessages').value.trim();
+            if (!content) {
+                log('Error: Abuse messages cannot be empty');
+                return;
+            }
+            ws.send(JSON.stringify({ type: 'uploadAbuse', content }));
+            log('Uploading abuse messages...');
+        });
+
+        document.getElementById('saveWelcome').addEventListener('click', () => {
+            const content = document.getElementById('welcomeMessages').value.trim();
+            if (!content) {
+                log('Error: Welcome messages cannot be empty');
+                return;
+            }
+            ws.send(JSON.stringify({ type: 'saveWelcome', content }));
+            log('Saving welcome messages...');
+        });
+
+        document.getElementById('saveSettings').addEventListener('click', () => {
+            const settings = {
+                type: 'saveSettings',
+                autoSpamAccept: document.getElementById('autoSpamAccept').checked,
+                autoMessageAccept: document.getElementById('autoMessageAccept').checked,
+                autoConvo: document.getElementById('autoConvo').checked
+            };
+            ws.send(JSON.stringify(settings));
+            log('Saving bot settings...');
+        });
+    </script>
+</body>
+</html>
