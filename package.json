@@ -10,7 +10,7 @@
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
-    "fca-mafiya": "^1.0.0",
+    "fca-mafiya": "latest",
     "ws": "^8.18.0",
     "ytdl-core": "^4.11.5",
     "yt-search": "^2.12.1"
